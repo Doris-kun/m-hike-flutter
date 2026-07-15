@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/hike.dart';
+import '../database/database_helper.dart';
 
 /// AddHikeScreen - man hinh nhap chi tiet 1 hike moi
 /// Tuong tu AddHikeActivity ben Java, nhung UI + logic trong 1 file.
@@ -163,14 +164,15 @@ class _AddHikeScreenState extends State<AddHikeScreen> {
 
   // ==================== SAVE HIKE (tam thoi in log) ====================
 
-  void _saveHike(Hike hike) {
-    // O Phase F3 se luu vao SQLite.
-    // Tam thoi chi print + hien Snackbar
-    debugPrint('Hike to save: $hike');
-    _showSnackBar('Hike saved: ${hike.name}');
-
-    // Xoa form de user co the them hike moi
-    _clearForm();
+  Future<void> _saveHike(Hike hike) async {
+    try {
+      // Luu vao SQLite that
+      final id = await DatabaseHelper.instance.insertHike(hike);
+      _showSnackBar('Hike saved successfully! ID: $id');
+      _clearForm();
+    } catch (e) {
+      _showSnackBar('Failed to save hike: $e');
+    }
   }
 
   void _clearForm() {
