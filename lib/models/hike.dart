@@ -25,7 +25,7 @@ class Hike {
     this.elevationGain,
   });
 
-  /// Chuyen Hike thanh Map (dung khi luu vao SQLite o Phase F3)
+  /// Chuyen Hike thanh Map de luu vao SQLite
   Map<String, dynamic> toMap() {
     return {
       'id': id,
@@ -41,7 +41,7 @@ class Hike {
     };
   }
 
-  /// Tao Hike tu Map (dung khi doc tu SQLite o Phase F3)
+  /// Tao Hike tu Map khi doc du lieu tu SQLite
   factory Hike.fromMap(Map<String, dynamic> map) {
     return Hike(
       id: map['id'] as int?,

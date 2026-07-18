@@ -162,7 +162,7 @@ class _AddHikeScreenState extends State<AddHikeScreen> {
   }
 
 
-  // ==================== SAVE HIKE (tam thoi in log) ====================
+  // ==================== SAVE HIKE VAO DATABASE ====================
 
   Future<void> _saveHike(Hike hike) async {
     try {
